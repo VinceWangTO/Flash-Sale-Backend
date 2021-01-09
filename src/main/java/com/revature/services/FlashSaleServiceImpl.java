@@ -2,6 +2,7 @@ package com.revature.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.models.FlashSale;
@@ -12,6 +13,7 @@ public class FlashSaleServiceImpl implements FlashSaleService {
 
 	private FlashSaleDAO fd;
 
+	@Autowired
 	public FlashSaleServiceImpl(FlashSaleDAO fd) {
 		super();
 		this.fd = fd;

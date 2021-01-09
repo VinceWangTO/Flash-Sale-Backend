@@ -26,7 +26,7 @@ public class Product {
 	private int productId;
 	private String productName;
 	private String description;
-	private BigDecimal price;
+	private BigDecimal listPrice;
 	private String photo;
 
 	@ManyToOne
@@ -70,12 +70,12 @@ public class Product {
 		this.description = description;
 	}
 
-	public BigDecimal getPrice() {
-		return price;
+	public BigDecimal getListPrice() {
+		return listPrice;
 	}
 
-	public void setPrice(BigDecimal price) {
-		this.price = price;
+	public void setListPrice(BigDecimal listPrice) {
+		this.listPrice = listPrice;
 	}
 
 	public String getPhoto() {
@@ -97,13 +97,13 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(int productId, String productName, String description, BigDecimal price, String photo, Vendor seller,
-			List<FlashSale> flashSales) {
+	public Product(int productId, String productName, String description, BigDecimal listPrice, String photo,
+			Vendor seller, List<FlashSale> flashSales) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
 		this.description = description;
-		this.price = price;
+		this.listPrice = listPrice;
 		this.photo = photo;
 		this.seller = seller;
 		this.flashSales = flashSales;
