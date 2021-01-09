@@ -1,16 +1,21 @@
 package com.revature.models;
 
 import java.math.BigDecimal;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
@@ -28,6 +33,18 @@ public class Product {
 	@JoinColumn(referencedColumnName = "vendorId")
 	@JsonBackReference
 	private Vendor seller;
+
+	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JsonManagedReference
+	private List<FlashSale> flashSales;
+
+	public List<FlashSale> getFlashSales() {
+		return flashSales;
+	}
+
+	public void setFlashSales(List<FlashSale> flashSales) {
+		this.flashSales = flashSales;
+	}
 
 	public int getProductId() {
 		return productId;
@@ -80,8 +97,8 @@ public class Product {
 	public Product() {
 	}
 
-	public Product(int productId, String productName, String description, BigDecimal price, String photo,
-			Vendor seller) {
+	public Product(int productId, String productName, String description, BigDecimal price, String photo, Vendor seller,
+			List<FlashSale> flashSales) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -89,6 +106,7 @@ public class Product {
 		this.price = price;
 		this.photo = photo;
 		this.seller = seller;
+		this.flashSales = flashSales;
 	}
 
 }
